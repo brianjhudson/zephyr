@@ -22,7 +22,7 @@ export function Nav() {
       className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 transition-all duration-300 ${
         isScrolled
           ? "dark:bg-transparent dark:border-b dark:border-transparent bg-white/95 backdrop-blur-sm border-b border-border shadow-sm"
-          : "bg-transparent border-b border-transparent"
+          : "text-white bg-transparent border-b border-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">

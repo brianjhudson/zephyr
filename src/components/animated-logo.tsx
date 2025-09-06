@@ -23,8 +23,8 @@ export function AnimatedLogo({
       <h1
         className={`text-2xl md:text-3xl transition-all duration-300 ${
           isScrolled
-            ? "text-foreground dark:text-foreground"
-            : "text-foreground dark:text-foreground"
+            ? "text-foreground"
+            : "text-background dark:text-foreground"
         }`}
         style={{
           fontFamily: "'Luxurious Script', cursive",
@@ -44,9 +44,7 @@ export function AnimatedLogo({
       {/* Optional decorative underline */}
       <div
         className={`absolute -bottom-2 left-1/2 h-0.5 transition-all duration-500 ${
-          isScrolled
-            ? "bg-gradient-to-r from-primary/40 via-primary to-primary/40"
-            : "bg-gradient-to-r from-foreground/40 via-foreground to-foreground/40"
+          isScrolled ? "bg-foreground" : "bg-background dark:bg-foreground"
         }`}
         style={{
           width: isAnimating ? "80%" : "0%",
