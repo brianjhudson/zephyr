@@ -45,6 +45,7 @@ next-env.d.ts
 .env*
 !.env.example
 
-# playwright
-playwright-report
-test-results
+# cypress
+cypress/screenshots
+cypress/videos
+cypress.env.json
