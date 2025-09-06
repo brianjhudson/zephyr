@@ -1,8 +1,34 @@
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@5.0.1
+  node: circleci/node@5.0.0
+
 workflows:
-  build:
+  test-and-deploy:
     jobs:
       - cypress/run:
+          name: test
           start-command: "npm run dev"
+          context:
+            - zephyr_development
+      - build-and-deploy:
+          requires:
+            - test
+          context:
+            - zephyr_production
+          filters:
+            branches:
+              only: main
+
+jobs:
+  build-and-deploy:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Build production
+          command: npm run build
+      - run:
+          name: Deploy to Cloudflare
+          command: npm run deploy
