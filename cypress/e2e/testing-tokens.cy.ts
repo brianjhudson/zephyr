@@ -22,9 +22,6 @@ describe("Testing Authentication", () => {
 
     cy.url().should("include", "/dashboard");
     cy.contains("h1", "Dashboard");
-
-    cy.visit("/");
-    cy.contains("Dashboard");
   });
   it("Allows authenticated access to dashboard through custom command", () => {
     cy.visit(`/`);

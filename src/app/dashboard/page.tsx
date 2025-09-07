@@ -14,6 +14,9 @@ export default async function DashboardPage() {
       <header className="mb-8">
         <Nav />
       </header>
+      <main>
+        <h1>Dashboard</h1>
+      </main>
     </div>
   );
 }
