@@ -5,11 +5,19 @@ import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 
 export function Nav() {
   return (
-    <header>
+    <header className="fixed top-0 left-0 right-0 bg-background border-b z-50">
       <NavigationMenu.Root className="relative z-10 flex w-full justify-between items-center p-4">
         <div className="flex items-center space-x-6">
-          <NavLink href="/" exact className="text-lg font-semibold px-2 py-1">
-            Zephyr
+          <NavLink
+            href="/"
+            exact
+            className="text-2xl md:text-3xl font-medium tracking-wide px-2 py-1"
+          >
+            <span
+              style={{ fontFamily: "var(--font-luxurious-script), cursive" }}
+            >
+              Zephyr
+            </span>
           </NavLink>
         </div>
 

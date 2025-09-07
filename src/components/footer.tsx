@@ -1,3 +1,7 @@
 export function Footer() {
-  return <footer>Footer</footer>;
+  return (
+    <footer className="px-4 max-w-7xl mx-auto">
+      Footer
+    </footer>
+  );
 }

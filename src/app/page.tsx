@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Nav />
-      <main>Main</main>
+      <main className="pt-16 px-4 max-w-7xl mx-auto">Main</main>
       <Footer />
     </div>
   );
