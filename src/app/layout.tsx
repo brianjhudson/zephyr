@@ -30,31 +30,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <head>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                try {
-                  const theme = localStorage.getItem('theme');
-                  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  const isDark = theme === 'dark' || (!theme && systemDark);
-                  
-                  if (isDark) {
-                    document.documentElement.classList.add('dark');
-                  }
-                } catch (e) {}
-              `,
-            }}
-          />
-        </head>
-        <body
-          className={`${playfair.variable} ${inter.variable} ${luxuriousScript.variable} antialiased`}
-        >
+    <html lang="en" suppressHydrationWarning>
+      <head></head>
+      <body
+        className={`${playfair.variable} ${inter.variable} ${luxuriousScript.variable} antialiased`}
+      >
+        <ClerkProvider>
           {children}
-        </body>
-      </html>
-    </ClerkProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }

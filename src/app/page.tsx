@@ -14,7 +14,7 @@ export default function Home() {
         <section className="w-full">
           <DrinksCarousel />
         </section>
-        
+
         {/* Content with proper padding */}
         <section className="px-4 max-w-7xl mx-auto py-8">
           {/* Future content goes here */}
