@@ -30,14 +30,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head></head>
       <body
         className={`${playfair.variable} ${inter.variable} ${luxuriousScript.variable} antialiased`}
       >
-        <ClerkProvider>
-          {children}
-        </ClerkProvider>
+        <ClerkProvider>{children}</ClerkProvider>
       </body>
     </html>
   );
