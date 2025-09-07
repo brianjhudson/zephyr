@@ -33,6 +33,7 @@ export function Nav() {
 
         <div className="flex items-center space-x-4">
           <ThemeToggle />
+          <Link href="/">Menu</Link>
           <SignedOut>
             <SignInButton />
           </SignedOut>
