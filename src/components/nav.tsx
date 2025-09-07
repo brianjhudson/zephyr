@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { AnimatedLogo } from "./animated-logo";
 import { ThemeToggle } from "./theme-toggle";
+import Link from "next/link";
 
 export function Nav() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,6 +37,7 @@ export function Nav() {
             <SignInButton />
           </SignedOut>
           <SignedIn>
+            <Link href="/dashboard">Dashboard</Link>
             <UserButton />
           </SignedIn>
         </div>
