@@ -13,7 +13,7 @@ export default async function DashboardPage() {
   return (
     <div className="min-h-screen">
       <Nav />
-      <main className="pt-16 px-4 max-w-7xl mx-auto">
+      <main className="pt-20 px-4 max-w-7xl mx-auto">
         <h1>Dashboard</h1>
       </main>
       <Footer />
