@@ -1,48 +1,41 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { AnimatedLogo } from "./animated-logo";
 import { ThemeToggle } from "./theme-toggle";
-import Link from "next/link";
+import { NavLink } from "./nav-link";
+import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 
 export function Nav() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 transition-all duration-300 ${
-        isScrolled
-          ? "dark:bg-transparent dark:border-b dark:border-transparent bg-white/95 backdrop-blur-sm border-b border-border shadow-sm"
-          : "text-white bg-transparent border-b border-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <header>
+      <NavigationMenu.Root className="relative z-10 flex w-full justify-between items-center p-4">
         <div className="flex items-center space-x-6">
-          <AnimatedLogo isScrolled={isScrolled} />
+          <NavLink href="/" exact className="text-lg font-semibold px-2 py-1">
+            Zephyr
+          </NavLink>
         </div>
 
-        <div className="flex items-center space-x-4">
-          <ThemeToggle />
-          <Link href="/">Menu</Link>
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <Link href="/dashboard">Dashboard</Link>
-            <UserButton />
-          </SignedIn>
-        </div>
-      </div>
-    </nav>
+        <NavigationMenu.List className="flex items-center space-x-4">
+          <NavigationMenu.Item>
+            <SignedIn>
+              <NavLink href="/dashboard">Dashboard</NavLink>
+            </SignedIn>
+          </NavigationMenu.Item>
+
+          <NavigationMenu.Item>
+            <ThemeToggle />
+          </NavigationMenu.Item>
+
+          <NavigationMenu.Item>
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </NavigationMenu.Item>
+        </NavigationMenu.List>
+
+        <NavigationMenu.Viewport className="absolute left-0 top-full flex justify-center w-full" />
+      </NavigationMenu.Root>
+    </header>
   );
 }

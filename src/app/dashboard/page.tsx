@@ -1,6 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { Nav } from "@/components/nav";
+import { Footer } from "@/components/footer";
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -11,12 +12,11 @@ export default async function DashboardPage() {
 
   return (
     <div className="min-h-screen">
-      <header className="mb-8">
-        <Nav />
-      </header>
+      <Nav />
       <main>
         <h1>Dashboard</h1>
       </main>
+      <Footer />
     </div>
   );
 }
