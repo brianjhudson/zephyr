@@ -11,6 +11,7 @@ interface NavLinkProps {
   children: React.ReactNode;
   className?: string;
   exact?: boolean;
+  onClick?: () => void;
 }
 
 export function NavLink({
@@ -18,6 +19,7 @@ export function NavLink({
   children,
   className,
   exact = false,
+  onClick,
 }: NavLinkProps) {
   const pathname = usePathname();
 
@@ -39,6 +41,7 @@ export function NavLink({
     <NavigationMenu.Link asChild>
       <Link
         href={href}
+        onClick={onClick}
         className={cn(
           "relative hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-md px-3 py-2",
           finalIsActive && "text-primary",
