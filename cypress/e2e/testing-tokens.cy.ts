@@ -20,7 +20,7 @@ describe("Testing Authentication", () => {
 
     cy.get(".cl-formButtonPrimary").contains("button", "Continue").click();
 
-    cy.url().should("include", "/dashboard");
+    cy.url().should("include", "dashboard");
     cy.contains("h1", "Dashboard");
   });
   it("Allows authenticated access to dashboard through custom command", () => {
