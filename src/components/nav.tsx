@@ -15,6 +15,7 @@ export function Nav() {
           >
             <span
               style={{ fontFamily: "var(--font-luxurious-script), cursive" }}
+              className="inline-block animate-[fadeInUp_0.8s_ease-out_forwards] opacity-0"
             >
               Zephyr
             </span>

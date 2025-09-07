@@ -48,7 +48,7 @@ export function NavLink({
         {children}
         <span
           className={cn(
-            "absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-primary rounded-full transition-all duration-300 ease-out",
+            "absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-primary rounded-full transition-all duration-1000 ease-out",
             finalIsActive && isAnimating
               ? "w-[80%] opacity-100"
               : "w-0 opacity-0"
