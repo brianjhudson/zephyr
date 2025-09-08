@@ -90,7 +90,7 @@ export function DrinksCarousel() {
   };
 
   return (
-    <div className="relative w-full h-[600px] overflow-hidden bg-muted">
+    <div className="relative w-full h-[600px] overflow-hidden bg-muted" data-testid="drinks-carousel">
       {/* Slides */}
       <div className="relative w-full h-full">
         {drinkSlides.map((slide, index) => (
