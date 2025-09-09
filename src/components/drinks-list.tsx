@@ -19,6 +19,7 @@ const fetcher = {
 
 export function DrinksList({ category, showPopularOnly = false }: DrinksListProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>(category || "all");
+  const [isRefreshing, setIsRefreshing] = useState(false);
   
   const getSwrKey = () => {
     if (showPopularOnly) return "drinks-popular";
@@ -55,8 +56,13 @@ export function DrinksList({ category, showPopularOnly = false }: DrinksListProp
     setSelectedCategory(newCategory);
   };
 
-  const handleRefresh = () => {
-    mutate();
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    try {
+      await mutate();
+    } finally {
+      setIsRefreshing(false);
+    }
   };
 
   if (error) {
@@ -102,10 +108,11 @@ export function DrinksList({ category, showPopularOnly = false }: DrinksListProp
           <h2 className="text-2xl font-semibold">Popular Drinks</h2>
           <button
             onClick={handleRefresh}
-            disabled={isLoading}
+            disabled={isLoading || isRefreshing}
             className="text-sm text-muted-foreground hover:text-foreground transition-colors disabled:opacity-50"
+            data-testid="refresh-button"
           >
-            {isLoading ? "Refreshing..." : "Refresh"}
+            {(isLoading || isRefreshing) ? "Refreshing..." : "Refresh"}
           </button>
         </div>
       )}
@@ -134,7 +141,7 @@ export function DrinksList({ category, showPopularOnly = false }: DrinksListProp
 
 function DrinkCard({ drink }: { drink: Drink }) {
   return (
-    <div className="bg-card rounded-lg shadow-sm border overflow-hidden hover:shadow-md transition-shadow">
+    <div className="bg-card rounded-lg shadow-sm border overflow-hidden hover:shadow-md transition-shadow" data-testid="drink-card">
       <div className="relative h-48 w-full">
         <Image
           src={drink.image}
