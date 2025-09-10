@@ -155,6 +155,26 @@ function DrinkCard({ drink }: { drink: Drink }) {
             Popular
           </div>
         )}
+        <div className="absolute bottom-2 right-2 text-white/70 text-xs">
+          Photo by{" "}
+          <a
+            href={drink.photoCredit.photographerUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-white transition-colors"
+          >
+            {drink.photoCredit.photographer}
+          </a>
+          {" · "}
+          <a
+            href={drink.photoCredit.originalPhotoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-white transition-colors"
+          >
+            View original
+          </a>
+        </div>
       </div>
       
       <div className="p-4 space-y-2">

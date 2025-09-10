@@ -9,6 +9,11 @@ interface DrinkSlide {
   alt: string;
   heading: string;
   subheading: string;
+  photoCredit: {
+    photographer: string;
+    photographerUrl: string;
+    originalPhotoUrl: string;
+  };
 }
 
 const drinkSlides: DrinkSlide[] = [
@@ -19,6 +24,13 @@ const drinkSlides: DrinkSlide[] = [
     heading: "Crafted to Perfection",
     subheading:
       "Each cocktail is meticulously prepared with premium spirits and fresh ingredients, delivering an unforgettable taste experience.",
+    photoCredit: {
+      photographer: "Mae Mu",
+      photographerUrl:
+        "https://unsplash.com/@picoftasty?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+      originalPhotoUrl:
+        "https://unsplash.com/photos/clear-glass-cup-on-brown-wooden-surface-YNMjGIPgD_c?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+    },
   },
   {
     id: 2,
@@ -27,6 +39,13 @@ const drinkSlides: DrinkSlide[] = [
     heading: "Refined Sophistication",
     subheading:
       "Step into a world of luxury where every detail is designed to elevate your evening with timeless elegance.",
+    photoCredit: {
+      photographer: "Ash Edmonds",
+      photographerUrl:
+        "https://unsplash.com/@badashproducts?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+      originalPhotoUrl:
+        "https://unsplash.com/photos/clear-glass-tumbler-on-brown-wooden-tray-fsI-_MRsic0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+    },
   },
   {
     id: 3,
@@ -36,6 +55,13 @@ const drinkSlides: DrinkSlide[] = [
     heading: "Artisan Excellence",
     subheading:
       "Our master mixologists blend tradition with innovation, creating signature drinks that delight the senses.",
+    photoCredit: {
+      photographer: "Adam Jaime",
+      photographerUrl:
+        "https://unsplash.com/@arobj?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+      originalPhotoUrl:
+        "https://unsplash.com/photos/liquor-pouring-on-clear-shot-glass-dmkmrNptMpw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+    },
   },
 ];
 
@@ -136,6 +162,28 @@ export function DrinksCarousel() {
                   {slide.subheading}
                 </p>
               </div>
+            </div>
+
+            {/* Photo Credit */}
+            <div className="absolute bottom-4 right-4 text-white/70 text-xs z-10">
+              Photo by{" "}
+              <a
+                href={slide.photoCredit.photographerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-white transition-colors"
+              >
+                {slide.photoCredit.photographer}
+              </a>
+              {" · "}
+              <a
+                href={slide.photoCredit.originalPhotoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-white transition-colors"
+              >
+                View original
+              </a>
             </div>
           </div>
         ))}

@@ -8,6 +8,11 @@ export interface Drink {
   ingredients: string[];
   abv: number;
   isPopular: boolean;
+  photoCredit: {
+    photographer: string;
+    photographerUrl: string;
+    originalPhotoUrl: string;
+  };
 }
 
 const mockDrinks: Drink[] = [
@@ -20,7 +25,12 @@ const mockDrinks: Drink[] = [
     category: "cocktail",
     ingredients: ["Bourbon", "Sugar", "Angostura bitters", "Orange peel"],
     abv: 35,
-    isPopular: true
+    isPopular: true,
+    photoCredit: {
+      photographer: "Kobby Mendez",
+      photographerUrl: "https://unsplash.com/@kobbymendez?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+      originalPhotoUrl: "https://unsplash.com/photos/selective-focus-photography-of-clear-glass-cup-with-brown-liquid-xBFTjrMIC0c?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+    }
   },
   {
     id: 2,
@@ -31,7 +41,12 @@ const mockDrinks: Drink[] = [
     category: "cocktail",
     ingredients: ["Gin", "Campari", "Sweet Vermouth", "Orange garnish"],
     abv: 24,
-    isPopular: true
+    isPopular: true,
+    photoCredit: {
+      photographer: "Kobby Mendez",
+      photographerUrl: "https://unsplash.com/@kobbymendez?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+      originalPhotoUrl: "https://unsplash.com/photos/close-up-photo-of-cocktail-drink-xBFTjrMIC0c?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+    }
   },
   {
     id: 3,
@@ -42,7 +57,12 @@ const mockDrinks: Drink[] = [
     category: "beer",
     ingredients: ["Hops", "Malt", "Yeast", "Water"],
     abv: 6.5,
-    isPopular: false
+    isPopular: false,
+    photoCredit: {
+      photographer: "Mika Baumeister",
+      photographerUrl: "https://unsplash.com/@mbaumi?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+      originalPhotoUrl: "https://unsplash.com/photos/beer-bottles-on-shelf-Wpnoqo2plFA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+    }
   },
   {
     id: 4,
@@ -53,7 +73,12 @@ const mockDrinks: Drink[] = [
     category: "wine",
     ingredients: ["Chardonnay grapes"],
     abv: 13.5,
-    isPopular: false
+    isPopular: false,
+    photoCredit: {
+      photographer: "Jez Timms",
+      photographerUrl: "https://unsplash.com/@jeztimms?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+      originalPhotoUrl: "https://unsplash.com/photos/clear-wine-glass-with-red-wine-DVRXFIH42d0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+    }
   },
   {
     id: 5,
@@ -64,7 +89,12 @@ const mockDrinks: Drink[] = [
     category: "cocktail",
     ingredients: ["Tequila", "Triple Sec", "Lime juice", "Salt rim"],
     abv: 22,
-    isPopular: true
+    isPopular: true,
+    photoCredit: {
+      photographer: "Kobby Mendez",
+      photographerUrl: "https://unsplash.com/@kobbymendez?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+      originalPhotoUrl: "https://unsplash.com/photos/close-up-photo-of-cocktail-drink-xBFTjrMIC0c?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+    }
   },
   {
     id: 6,
@@ -75,7 +105,12 @@ const mockDrinks: Drink[] = [
     category: "spirit",
     ingredients: ["Malted barley", "Water", "Yeast"],
     abv: 40,
-    isPopular: false
+    isPopular: false,
+    photoCredit: {
+      photographer: "Ambitious Creative Co. - Rick Barrett",
+      photographerUrl: "https://unsplash.com/@weareambitious?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+      originalPhotoUrl: "https://unsplash.com/photos/clear-glass-bottle-with-brown-liquid-RDAojeRc6mw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+    }
   }
 ];
 
