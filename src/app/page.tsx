@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { DrinksCarousel } from "@/components/drinks-carousel";
+import { DrinksSection } from "@/components/drinks-section";
 
 export default function Home() {
   return (
@@ -17,7 +18,8 @@ export default function Home() {
 
         {/* Content with proper padding */}
         <section className="px-4 max-w-7xl mx-auto py-8">
-          {/* Future content goes here */}
+          <DrinksSection showPopularOnly={true} title="Popular Drinks" />
+          <DrinksSection title="All Drinks" />
         </section>
       </main>
       <Footer />

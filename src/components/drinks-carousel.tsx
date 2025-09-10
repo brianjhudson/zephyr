@@ -14,8 +14,7 @@ interface DrinkSlide {
 const drinkSlides: DrinkSlide[] = [
   {
     id: 1,
-    image:
-      "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80",
+    image: "https://zephyr-images.brianjhudson.com/bar-sophisticated-hero.jpeg",
     alt: "Elegant cocktail with garnish",
     heading: "Crafted to Perfection",
     subheading:
@@ -23,8 +22,7 @@ const drinkSlides: DrinkSlide[] = [
   },
   {
     id: 2,
-    image:
-      "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=400&h=400&fit=crop",
+    image: "https://zephyr-images.brianjhudson.com/cocktail-elegant-hero.jpeg",
     alt: "Sophisticated bar atmosphere",
     heading: "Refined Sophistication",
     subheading:
@@ -33,7 +31,7 @@ const drinkSlides: DrinkSlide[] = [
   {
     id: 3,
     image:
-      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400&h=400&fit=crop",
+      "https://zephyr-images.brianjhudson.com/mixologist-artisan-hero.jpeg",
     alt: "Artisanal cocktail preparation",
     heading: "Artisan Excellence",
     subheading:
@@ -90,7 +88,10 @@ export function DrinksCarousel() {
   };
 
   return (
-    <div className="relative w-full h-[600px] overflow-hidden bg-muted" data-testid="drinks-carousel">
+    <div
+      className="relative w-full h-[600px] overflow-hidden bg-muted"
+      data-testid="drinks-carousel"
+    >
       {/* Slides */}
       <div className="relative w-full h-full">
         {drinkSlides.map((slide, index) => (
@@ -125,11 +126,13 @@ export function DrinksCarousel() {
                 >
                   {slide.heading}
                 </h2>
-                <p className={`text-lg md:text-xl leading-relaxed font-light max-w-2xl mx-auto transition-all duration-1000 ${
-                  index === currentSlide
-                    ? "animate-[fadeInUp_0.8s_ease-out_0.6s_forwards] opacity-0"
-                    : "opacity-0"
-                }`}>
+                <p
+                  className={`text-lg md:text-xl leading-relaxed font-light max-w-2xl mx-auto transition-all duration-1000 ${
+                    index === currentSlide
+                      ? "animate-[fadeInUp_0.8s_ease-out_0.6s_forwards] opacity-0"
+                      : "opacity-0"
+                  }`}
+                >
                   {slide.subheading}
                 </p>
               </div>
