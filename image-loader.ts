@@ -1,7 +1,15 @@
 import type { ImageLoaderProps } from "next/image";
 
 function normalizeSrc(src: string): string {
-  return src.startsWith("https://") || src.startsWith("http://") ? src : `/${src}`;
+  // For external URLs, remove the protocol to work with Cloudflare Images
+  if (src.startsWith("https://")) {
+    return src.replace("https://", "");
+  }
+  if (src.startsWith("http://")) {
+    return src.replace("http://", "");
+  }
+  // For relative URLs, add leading slash
+  return src.startsWith("/") ? src : `/${src}`;
 }
 
 export default function cloudflareLoader({ src, width, quality }: ImageLoaderProps): string {
