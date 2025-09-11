@@ -27,8 +27,8 @@ describe("Drinks List", () => {
       );
     });
 
-    it("renders all drinks section", () => {
-      cy.contains("All Drinks").should("be.visible");
+    it("renders browse by category section", () => {
+      cy.contains("Browse by Category").should("be.visible");
       cy.get('[data-testid="drink-card"]', { timeout: 10000 }).should(
         "have.length.greaterThan",
         0
@@ -43,7 +43,7 @@ describe("Drinks List", () => {
           cy.get("img").should("exist").and("have.attr", "src");
 
           // Check for drink name
-          cy.get("h3").should("exist").and("not.be.empty");
+          cy.get("h4, h3").should("exist").and("not.be.empty");
 
           // Check for description
           cy.get("p").should("exist").and("not.be.empty");
@@ -68,37 +68,29 @@ describe("Drinks List", () => {
     });
   });
 
-  describe("Category Filtering", () => {
-    it("shows category filter buttons", () => {
-      cy.contains("All Drinks").should("be.visible");
+  describe("Category Display", () => {
+    it("shows category sections", () => {
+      cy.contains("Browse by Category").should("be.visible");
       cy.contains("Cocktails").should("be.visible");
       cy.contains("Beer").should("be.visible");
       cy.contains("Wine").should("be.visible");
       cy.contains("Spirits").should("be.visible");
     });
 
-    it("filters drinks by category", () => {
+    it("displays drinks in category carousels", () => {
       // Wait for initial load
-      cy.get('[data-testid="drink-card"]', { timeout: 10000 }).should("exist");
+      cy.get('[data-testid="drink-card"]', { timeout: 15000 }).should("exist");
 
-      // Click on Cocktails filter
-      cy.contains("button", "Cocktails").click();
-
-      // Check that loading state shows briefly
-      cy.get(".animate-pulse").should("exist");
-
-      // Wait for filtered results
-      cy.get('[data-testid="drink-card"]', { timeout: 10000 }).should("exist");
-
-      // Verify that only cocktails are shown (this would depend on mock data)
-      cy.get('[data-testid="drink-card"]').should("have.length.greaterThan", 0);
+      // Verify that drinks are displayed in each category
+      cy.get('[data-testid="drink-card"]').should("have.length.greaterThan", 10);
     });
 
-    it("shows active state on selected category", () => {
-      cy.get('[data-testid="drink-card"]', { timeout: 10000 }).should("exist");
+    it("shows navigation arrows for categories", () => {
+      cy.get('[data-testid="drink-card"]', { timeout: 15000 }).should("exist");
 
-      cy.contains("button", "Beer").click();
-      cy.contains("button", "Beer").should("have.class", "bg-primary");
+      // Should have navigation arrows for carousels
+      cy.get('[aria-label="Next drinks"]').should("exist");
+      cy.get('[aria-label="Previous drinks"]').should("exist");
     });
   });
 
