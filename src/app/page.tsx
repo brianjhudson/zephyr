@@ -19,7 +19,7 @@ export default function Home() {
         {/* Content with proper padding */}
         <section className="px-4 max-w-7xl mx-auto py-8">
           <DrinksSection showPopularOnly={true} title="Popular Drinks" />
-          <DrinksSection title="All Drinks" />
+          <DrinksSection title="Browse by Category" useCarousel={true} />
         </section>
       </main>
       <Footer />
