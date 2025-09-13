@@ -30,10 +30,8 @@ jobs:
       - run:
           name: Setup database for testing
           command: |
-            # Generate Prisma client
             npm run db:generate
-            # Setup test database
-            DATABASE_URL=file:./test.db npx prisma db push
+            npx prisma db push
       - cypress/run:
           start-command: "npm run dev"
 
