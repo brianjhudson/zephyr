@@ -34,9 +34,6 @@ jobs:
             npm run db:generate
             # Setup test database
             DATABASE_URL=file:./test.db npx prisma db push
-      - run:
-          name: Set environment for tests
-          command: echo "export WRANGLER_ENVIRONMENT=development" >> $BASH_ENV
       - cypress/run:
           start-command: "npm run dev"
 
