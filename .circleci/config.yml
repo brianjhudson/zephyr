@@ -28,18 +28,17 @@ jobs:
           name: Install Wrangler
           command: npm install -g wrangler
       - run:
-          name: Setup local D1 database
+          name: Setup database for testing
           command: |
-            # Create local D1 database
-            wrangler d1 create zephyr-dev-local --local
             # Generate Prisma client
             npm run db:generate
-            # Run database migrations locally
-            npm run db:migrate:local
+            # Setup test database
+            DATABASE_URL=file:./test.db npx prisma db push
+      - run:
+          name: Set environment for tests
+          command: echo "export WRANGLER_ENVIRONMENT=development" >> $BASH_ENV
       - cypress/run:
           start-command: "npm run dev"
-          environment:
-            WRANGLER_ENVIRONMENT: development
 
   build-and-deploy:
     executor: node/default
