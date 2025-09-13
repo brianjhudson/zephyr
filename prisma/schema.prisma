@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  clerk_user_id String   @unique
+  created_at    DateTime @default(now())
+  role          Role
+  identifier    String
+}
+
+model Drink {
+  id            Int           @id @default(autoincrement())
+  name          String
+  description   String
+  price         Float
+  image         String
+  category      DrinkCategory
+  ingredients   String
+  abv           Float
+  isPopular     Boolean
+  photoCreditId Int
+  photoCredit   PhotoCredit   @relation(fields: [photoCreditId], references: [id])
+}
+
+model PhotoCredit {
+  id               Int     @id @default(autoincrement())
+  photographer     String
+  photographerUrl  String
+  originalPhotoUrl String
+  Drink            Drink[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum DrinkCategory {
+  COCKTAIL
+  BEER
+  WINE
+  SPIRIT
+}

@@ -6,14 +6,12 @@ orbs:
 workflows:
   test-and-deploy:
     jobs:
-      - cypress/run:
-          name: test
-          start-command: "npm run dev"
+      - test-with-db:
           context:
             - zephyr_development
       - build-and-deploy:
           requires:
-            - test
+            - test-with-db
           context:
             - zephyr_production
           filters:
@@ -21,11 +19,42 @@ workflows:
               only: main
 
 jobs:
+  test-with-db:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Install Wrangler
+          command: npm install -g wrangler
+      - run:
+          name: Setup local D1 database
+          command: |
+            # Create local D1 database
+            wrangler d1 create zephyr-dev-local --local
+            # Generate Prisma client
+            npm run db:generate
+            # Run database migrations locally
+            npm run db:migrate:local
+      - cypress/run:
+          start-command: "npm run dev"
+          environment:
+            WRANGLER_ENVIRONMENT: development
+
   build-and-deploy:
     executor: node/default
     steps:
       - checkout
       - node/install-packages
+      - run:
+          name: Install Wrangler
+          command: npm install -g wrangler
+      - run:
+          name: Generate Prisma client
+          command: npm run db:generate
+      - run:
+          name: Run remote database migrations
+          command: npm run db:migrate:remote
       - run:
           name: Build production
           command: npm run build
