@@ -28,10 +28,8 @@ jobs:
           name: Install Wrangler
           command: npm install -g wrangler
       - run:
-          name: Setup database for testing
-          command: |
-            npm run db:generate
-            npx prisma db push
+          name: Generate Prisma client
+          command: npm run db:generate
       - cypress/run:
           start-command: "npm run dev"
 
@@ -46,9 +44,6 @@ jobs:
       - run:
           name: Generate Prisma client
           command: npm run db:generate
-      - run:
-          name: Run remote database migrations
-          command: npm run db:migrate:remote
       - run:
           name: Build production
           command: npm run build
