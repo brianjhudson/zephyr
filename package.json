@@ -12,7 +12,7 @@
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts",
-    "db:generate": "prisma generate",
+    "postinstall": "prisma generate",
     "db:push": "wrangler d1 execute DB --env development --file=./prisma/migrations/schema.sql",
     "db:push:remote": "wrangler d1 execute DB --env production --file=./prisma/migrations/schema.sql",
     "db:migrate": "prisma db push",

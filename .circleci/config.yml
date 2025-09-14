@@ -6,12 +6,14 @@ orbs:
 workflows:
   test-and-deploy:
     jobs:
-      - test-with-db:
+      - cypress/run:
+          name: test
+          start-command: "npm run dev"
           context:
             - zephyr_development
       - build-and-deploy:
           requires:
-            - test-with-db
+            - test
           context:
             - zephyr_production
           filters:
@@ -19,31 +21,11 @@ workflows:
               only: main
 
 jobs:
-  test-with-db:
-    executor: node/default
-    steps:
-      - checkout
-      - node/install-packages
-      - run:
-          name: Install Wrangler
-          command: npm install -g wrangler
-      - run:
-          name: Generate Prisma client
-          command: npm run db:generate
-      - cypress/run:
-          start-command: "npm run dev"
-
   build-and-deploy:
     executor: node/default
     steps:
       - checkout
       - node/install-packages
-      - run:
-          name: Install Wrangler
-          command: npm install -g wrangler
-      - run:
-          name: Generate Prisma client
-          command: npm run db:generate
       - run:
           name: Build production
           command: npm run build
