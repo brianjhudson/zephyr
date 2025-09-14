@@ -49,3 +49,11 @@ next-env.d.ts
 cypress/screenshots
 cypress/videos
 cypress.env.json
+
+/src/generated/prisma
+
+# database files
+*.db
+*.sqlite
+temp.db
+prisma/temp.db
