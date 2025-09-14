@@ -1,14 +1,8 @@
--- CreateTable
-CREATE TABLE "User" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "clerk_user_id" TEXT NOT NULL,
-    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "role" TEXT NOT NULL,
-    "identifier" TEXT NOT NULL
-);
+-- Drop User table if it exists
+DROP TABLE IF EXISTS "User";
 
--- CreateTable
-CREATE TABLE "Drink" (
+-- CreateTable (only if not exists)
+CREATE TABLE IF NOT EXISTS "Drink" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
@@ -22,13 +16,10 @@ CREATE TABLE "Drink" (
     CONSTRAINT "Drink_photoCreditId_fkey" FOREIGN KEY ("photoCreditId") REFERENCES "PhotoCredit" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
--- CreateTable
-CREATE TABLE "PhotoCredit" (
+-- CreateTable (only if not exists)
+CREATE TABLE IF NOT EXISTS "PhotoCredit" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "photographer" TEXT NOT NULL,
     "photographerUrl" TEXT NOT NULL,
     "originalPhotoUrl" TEXT NOT NULL
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "User_clerk_user_id_key" ON "User"("clerk_user_id");
