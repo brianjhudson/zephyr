@@ -8,7 +8,6 @@ workflows:
     jobs:
       - cypress/run:
           name: test
-          executor: cypress/default
           install-command: npm install
           post-install: npm run db:migrate && npm run db:seed
           start-command: "npm run dev" # Or your specific command to start the app
