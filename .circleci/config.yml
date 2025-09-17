@@ -22,9 +22,6 @@ jobs:
     steps:
       - checkout
       - node/install-packages
-      - run:
-          name: Generate Prisma client
-          command: npm run db:generate
       - cypress/run:
           start-command: "npm run dev"
 
