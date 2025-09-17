@@ -60,6 +60,8 @@ export function DrinksList({ category, showPopularOnly = false }: DrinksListProp
     setIsRefreshing(true);
     try {
       await mutate();
+      // Ensure minimum refresh time for better UX and test visibility
+      await new Promise(resolve => setTimeout(resolve, 500));
     } finally {
       setIsRefreshing(false);
     }
@@ -190,17 +192,17 @@ function DrinkCard({ drink }: { drink: Drink }) {
         </p>
         
         <div className="flex flex-wrap gap-1 mt-2">
-          {drink.ingredients.slice(0, 3).map((ingredient, index) => (
+          {drink.ingredients.split(', ').slice(0, 3).map((ingredient, index) => (
             <span
               key={index}
               className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded"
             >
-              {ingredient}
+              {ingredient.trim()}
             </span>
           ))}
-          {drink.ingredients.length > 3 && (
+          {drink.ingredients.split(', ').length > 3 && (
             <span className="text-xs text-muted-foreground px-2 py-1">
-              +{drink.ingredients.length - 3} more
+              +{drink.ingredients.split(', ').length - 3} more
             </span>
           )}
         </div>

@@ -41,7 +41,9 @@ describe("Testing Authentication", () => {
     });
     cy.clerkSignOut();
     cy.visit("/dashboard");
-    cy.get(".cl-signIn-root").should("exist");
+    cy.origin("https://endless-possum-20.accounts.dev", () => {
+      cy.get(".cl-signIn-root").should("exist");
+    });
     cy.visit("/");
     cy.contains("Sign in");
   });

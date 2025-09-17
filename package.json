@@ -13,11 +13,12 @@
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts",
     "postinstall": "prisma generate",
-    "db:push": "wrangler d1 execute DB --env development --file=./prisma/migrations/schema.sql",
-    "db:push:remote": "wrangler d1 execute DB --env production --file=./prisma/migrations/schema.sql",
+    "db:push:prod": "wrangler d1 execute DB --file=./prisma/migrations/schema.sql",
     "db:migrate": "prisma db push",
-    "db:migrate:dev": "prisma db push && npm run db:push",
-    "db:migrate:prod": "prisma db push && npm run db:push:remote",
+    "db:migrate:dev": "prisma db push",
+    "db:migrate:prod": "prisma db push && npm run db:push:prod",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:seed:prod": "wrangler d1 execute DB --file=./prisma/seed.sql",
     "db:studio": "prisma studio"
   },
   "dependencies": {
@@ -50,6 +51,7 @@
     "eslint-plugin-cypress": "^5.1.1",
     "prisma": "^6.16.1",
     "tailwindcss": "^4",
+    "tsx": "^4.20.5",
     "typescript": "^5",
     "wrangler": "^4.36.0"
   }

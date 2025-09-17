@@ -20,12 +20,14 @@ export function getPrismaClient(env?: { DB?: D1Database }) {
     return prisma
   }
 
-  // In development, use local SQLite
+  // In development, use local SQLite database
   if (process.env.NODE_ENV === 'development') {
+    const devDbUrl = process.env.DATABASE_URL || 'file:./dev.db'
+    console.log('Using development database:', devDbUrl)
     prisma = new PrismaClient({
       datasources: {
         db: {
-          url: process.env.DATABASE_URL || 'file:./dev.db'
+          url: devDbUrl
         }
       }
     })

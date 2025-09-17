@@ -6,14 +6,10 @@ orbs:
 workflows:
   test-and-deploy:
     jobs:
-      - cypress/run:
-          name: test
-          start-command: "npm run dev"
-          context:
-            - zephyr_development
+      - test-with-local-db
       - build-and-deploy:
           requires:
-            - test
+            - test-with-local-db
           context:
             - zephyr_production
           filters:
@@ -21,11 +17,25 @@ workflows:
               only: main
 
 jobs:
+  test-with-local-db:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Generate Prisma client
+          command: npm run db:generate
+      - cypress/run:
+          start-command: "npm run dev"
+
   build-and-deploy:
     executor: node/default
     steps:
       - checkout
       - node/install-packages
+      - run:
+          name: Generate Prisma client
+          command: npm run db:generate
       - run:
           name: Build production
           command: npm run build
