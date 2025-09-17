@@ -8,9 +8,13 @@ workflows:
     jobs:
       - cypress/run:
           name: test
-          start-command: "npm run dev"
+          executor: cypress/default
+          install-command: npm install
+          post-install: npm run db:migrate && npm run db:seed
+          start-command: "npm run dev" # Or your specific command to start the app
           context:
             - zephyr_development
+
       - build-and-deploy:
           requires:
             - test

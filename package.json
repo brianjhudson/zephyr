@@ -15,7 +15,6 @@
     "postinstall": "prisma generate",
     "db:push:prod": "wrangler d1 execute DB --file=./prisma/migrations/schema.sql",
     "db:migrate": "prisma db push",
-    "db:migrate:dev": "prisma db push",
     "db:migrate:prod": "prisma db push && npm run db:push:prod",
     "db:seed": "tsx prisma/seed.ts",
     "db:seed:prod": "wrangler d1 execute DB --file=./prisma/seed.sql",
