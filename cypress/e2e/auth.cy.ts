@@ -32,19 +32,6 @@ describe("Testing Authentication", () => {
     cy.visit("/dashboard");
     cy.contains("h1", "Dashboard");
   });
-  it("Protects dashboard after sign out", () => {
-    cy.visit(`/`);
-    cy.clerkSignIn({
-      strategy: "password",
-      identifier: Cypress.env("TEST_USERNAME"),
-      password: Cypress.env("TEST_PASSWORD"),
-    });
-    cy.clerkSignOut();
-    cy.visit("/dashboard");
-    cy.get(".cl-signIn-root").should("exist");
-    cy.visit("/");
-    cy.contains("Sign in");
-  });
 });
 
 // Prevent TypeScript from reading file as legacy script

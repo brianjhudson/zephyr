@@ -156,14 +156,7 @@ export function DrinksCategoryCarousel({ category, title }: DrinksCategoryCarous
   }
 
   if (!drinks || drinks.length === 0) {
-    return (
-      <div className="py-8">
-        <h3 className="text-2xl font-semibold mb-6">{title}</h3>
-        <div className="text-center py-8">
-          <p className="text-muted-foreground">No {categoryLabels[category].toLowerCase()} available</p>
-        </div>
-      </div>
-    );
+    return null;
   }
 
   const translateX = -currentIndex * (100 / currentItemsPerView) + (isDragging ? (dragOffset / carouselRef.current!.offsetWidth) * 100 : 0);
@@ -312,17 +305,17 @@ function DrinkCard({ drink }: { drink: Drink }) {
         </p>
         
         <div className="flex flex-wrap gap-1 mt-2">
-          {drink.ingredients.slice(0, 3).map((ingredient, index) => (
+          {drink.ingredients.split(', ').slice(0, 3).map((ingredient, index) => (
             <span
               key={index}
               className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded"
             >
-              {ingredient}
+              {ingredient.trim()}
             </span>
           ))}
-          {drink.ingredients.length > 3 && (
+          {drink.ingredients.split(', ').length > 3 && (
             <span className="text-xs text-muted-foreground px-2 py-1">
-              +{drink.ingredients.length - 3} more
+              +{drink.ingredients.split(', ').length - 3} more
             </span>
           )}
         </div>

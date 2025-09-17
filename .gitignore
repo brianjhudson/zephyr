@@ -57,3 +57,6 @@ cypress.env.json
 *.sqlite
 temp.db
 prisma/temp.db
+
+# clerk configuration (can include secrets)
+/.clerk/
